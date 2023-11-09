@@ -74,14 +74,6 @@ curl -fsSL https://get.docker.com -o get-docker.sh |& tee -a $LOGFILE
 sudo sh get-docker.sh |& tee -a $LOGFILE
 check_status "Install Docker"
 
-# Add user to the docker group
-echo_remark "Adding user to the docker group..."
-sudo usermod -aG docker $USER |& tee -a $LOGFILE
-check_status "Add user to docker group"
-
-# Log out and log back in to apply group changes
-echo_remark "Please log out and log back in to apply group changes."
-
 # Install Docker Compose
 echo_remark "Installing Docker Compose..."
 sudo apt-get install docker-compose-plugin -y |& tee -a $LOGFILE
@@ -148,6 +140,14 @@ sudo systemctl restart NetworkManager |& tee -a $LOGFILE || check_status "Restar
 # Resart DNS resolver for good measure 
 echo_remark "Restarting Resolved Service..."
 sudo systemctl restart systemd-resolved.service |& tee -a $LOGFILE || check_status "Restarting NetworkManager.."
+
+# Add user to the docker group
+echo_remark "Adding user to the docker group..."
+sudo usermod -aG docker $USER |& tee -a $LOGFILE
+check_status "Add user to docker group"
+
+# Log out and log back in to apply group changes
+echo_remark "Please log out and log back in to apply group changes."
 
 # Script complete
 echo_remark "Updates and install complete, check logfile located in /tmp directory called setup.log for details."
