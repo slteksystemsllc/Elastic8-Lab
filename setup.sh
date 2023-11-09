@@ -149,8 +149,5 @@ sudo systemctl restart docker
 newgrp docker
 check_status "Add user to docker group"
 
-# Log out and log back in to apply group changes
-echo_remark "Please log out and log back in to apply group changes."
-
 # Script complete
 echo_remark "Updates and install complete, check logfile located in /tmp directory called setup.log for details."
