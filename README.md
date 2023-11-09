@@ -20,21 +20,8 @@ Install Ubuntu 22.04 or newer
 # Once Ubuntu is insalled run update and upgrade commands to update system
 sudo apt-get update -y && sudo apt-get upgrade -y
 
-# Install wget
-sudo apt-get install -y wget
-
 # Change to the working directory /opt
 cd /opt
 
 # Download the prerequisites script and run in bash
 sudo wget https://github.com/slteksystemsllc/Elastic8-Lab/raw/main/setup.sh && sudo bash ./setup.sh
-
-# Download the initialization script and run in bash
-sudo wget https://github.com/slteksystemsllc/elastic_stack/raw/master/scripts/initialize.sh && sudo bash initialize.sh
-
-# Navigate to /opt/elastic_stack/ and run the following command.  This will start the stack in daemon mode.
-cd /opt/elastic_stack/
-sudo docker-compose up -d
-
-# Wait until Elasticsearch is running then run this bsah script to install elasticsearch index's
-bash elasticsearch/indexes/import.sh
