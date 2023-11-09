@@ -145,6 +145,8 @@ sudo systemctl restart systemd-resolved.service |& tee -a $LOGFILE || check_stat
 echo_remark "Adding user to the docker group..."
 USER=$(whoami)
 sudo usermod -aG docker $USER |& tee -a $LOGFILE
+sudo systemctl restart docker
+newgrp docker
 check_status "Add user to docker group"
 
 # Log out and log back in to apply group changes
