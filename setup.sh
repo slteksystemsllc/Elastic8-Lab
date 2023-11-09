@@ -143,6 +143,7 @@ sudo systemctl restart systemd-resolved.service |& tee -a $LOGFILE || check_stat
 
 # Add user to the docker group
 echo_remark "Adding user to the docker group..."
+USER=$(whoami)
 sudo usermod -aG docker $USER |& tee -a $LOGFILE
 check_status "Add user to docker group"
 
